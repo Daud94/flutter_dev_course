@@ -8,9 +8,9 @@ void main() {
         title: Text("I Am Rich"),
         backgroundColor: Colors.blueGrey[900],
       ),
-      body: Center(
+      body: const Center(
         child: Image(
-          image: NetworkImage('https://www.simplilearn.com/ice9/free_resources_article_thumb/what_is_image_Processing.jpg'),
+          image: AssetImage('images/diamond.png'),
         ),
       ),
     ),
