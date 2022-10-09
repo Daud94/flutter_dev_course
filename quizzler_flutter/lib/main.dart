@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:quizzler_flutter/question.dart';
+import 'package:quizzler_flutter/quiiz_brain.dart';
 
 void main() {
   runApp(Quizzler());
@@ -13,17 +14,7 @@ class Quizzler extends StatefulWidget {
 }
 
 class _QuizzlerState extends State<Quizzler> {
-  // list to keep track of answered questions
-  List<Widget> scoreKeeper = [];
-
-  // list of questions
-  List<Question> questions = [
-    Question('You can lead a cow down stairs but not up stairs.', false),
-    Question('Approximately one quarter of human bones are in the feet.', true),
-    Question('A slug\'s blood is green.', true)
-  ];
-
-  int questionNo = 0;
+ QuizBrain quiz = QuizBrain();
 
   @override
   Widget build(BuildContext context) {
@@ -40,7 +31,7 @@ class _QuizzlerState extends State<Quizzler> {
                   child: Padding(
                     padding: const EdgeInsets.all(20.0),
                     child: Text(
-                      questions[questionNo].questionText,
+                      quiz.questions[quiz.questionNo].questionText,
                       style: TextStyle(
                           fontSize: 20,
                           fontWeight: FontWeight.bold,
@@ -56,20 +47,20 @@ class _QuizzlerState extends State<Quizzler> {
                 child: TextButton(
                   onPressed: () {
                     setState(() {
-                      bool correctAnswer = questions[questionNo].questionAnswer;
+                      bool correctAnswer = quiz.questions[quiz.questionNo].questionAnswer;
                       if (correctAnswer == true) {
-                        scoreKeeper.add(Icon(
+                        quiz.scoreKeeper.add(Icon(
                           Icons.check,
                           color: Colors.green,
                         ));
                       } else {
-                        scoreKeeper.add(Icon(
+                        quiz.scoreKeeper.add(Icon(
                           Icons.check,
                           color: Colors.red,
                         ));
                       }
                     });
-                    questionNo++;
+                    quiz.questionNo++;
                   },
                   style: const ButtonStyle(
                     backgroundColor:
@@ -92,20 +83,20 @@ class _QuizzlerState extends State<Quizzler> {
                     onPressed: () {
                       setState(() {
                         bool correctAnswer =
-                            questions[questionNo].questionAnswer;
+                            quiz.questions[quiz.questionNo].questionAnswer;
                         if (correctAnswer == false) {
-                          scoreKeeper.add(Icon(
+                          quiz.scoreKeeper.add(Icon(
                             Icons.check,
                             color: Colors.green,
                           ));
                         } else {
-                          scoreKeeper.add(Icon(
+                          quiz.scoreKeeper.add(Icon(
                             Icons.check,
                             color: Colors.red,
                           ));
                         }
                       });
-                      questionNo++;
+                      quiz.questionNo++;
                     },
                     style: TextButton.styleFrom(
                       backgroundColor: Colors.red,
@@ -119,7 +110,7 @@ class _QuizzlerState extends State<Quizzler> {
                     )),
               )),
               Row(
-                children: scoreKeeper,
+                children: quiz.scoreKeeper,
               )
             ],
           ),
