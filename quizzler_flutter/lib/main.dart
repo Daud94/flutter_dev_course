@@ -15,7 +15,6 @@ class Quizzler extends StatefulWidget {
 
 class _QuizzlerState extends State<Quizzler> {
  QuizBrain quiz = QuizBrain();
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -31,7 +30,7 @@ class _QuizzlerState extends State<Quizzler> {
                   child: Padding(
                     padding: const EdgeInsets.all(20.0),
                     child: Text(
-                      quiz.questions[quiz.questionNo].questionText,
+                      quiz.getQuestion(),
                       style: TextStyle(
                           fontSize: 20,
                           fontWeight: FontWeight.bold,
@@ -47,7 +46,7 @@ class _QuizzlerState extends State<Quizzler> {
                 child: TextButton(
                   onPressed: () {
                     setState(() {
-                      bool correctAnswer = quiz.questions[quiz.questionNo].questionAnswer;
+                      bool correctAnswer = quiz.getAnswer();
                       if (correctAnswer == true) {
                         quiz.scoreKeeper.add(Icon(
                           Icons.check,
@@ -60,7 +59,7 @@ class _QuizzlerState extends State<Quizzler> {
                         ));
                       }
                     });
-                    quiz.questionNo++;
+                    quiz.nextQuestion();
                   },
                   style: const ButtonStyle(
                     backgroundColor:
@@ -83,7 +82,7 @@ class _QuizzlerState extends State<Quizzler> {
                     onPressed: () {
                       setState(() {
                         bool correctAnswer =
-                            quiz.questions[quiz.questionNo].questionAnswer;
+                            quiz.getAnswer();
                         if (correctAnswer == false) {
                           quiz.scoreKeeper.add(Icon(
                             Icons.check,
@@ -96,7 +95,7 @@ class _QuizzlerState extends State<Quizzler> {
                           ));
                         }
                       });
-                      quiz.questionNo++;
+                      quiz.nextQuestion();
                     },
                     style: TextButton.styleFrom(
                       backgroundColor: Colors.red,
