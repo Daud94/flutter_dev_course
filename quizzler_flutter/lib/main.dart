@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:quizzler_flutter/question.dart';
 import 'package:quizzler_flutter/quiiz_brain.dart';
+import 'package:rflutter_alert/rflutter_alert.dart';
 
 void main() {
-  runApp(Quizzler());
+  runApp(const Quizzler());
 }
 
 class Quizzler extends StatefulWidget {
@@ -31,7 +31,7 @@ class _QuizzlerState extends State<Quizzler> {
                     padding: const EdgeInsets.all(20.0),
                     child: Text(
                       quiz.getQuestion(),
-                      style: TextStyle(
+                      style: const TextStyle(
                           fontSize: 20,
                           fontWeight: FontWeight.bold,
                           color: Colors.white),
@@ -48,12 +48,12 @@ class _QuizzlerState extends State<Quizzler> {
                     setState(() {
                       bool correctAnswer = quiz.getAnswer();
                       if (correctAnswer == true) {
-                        quiz.scoreKeeper.add(Icon(
+                        quiz.scoreKeeper.add(const Icon(
                           Icons.check,
                           color: Colors.green,
                         ));
                       } else {
-                        quiz.scoreKeeper.add(Icon(
+                        quiz.scoreKeeper.add(const Icon(
                           Icons.check,
                           color: Colors.red,
                         ));
@@ -84,12 +84,12 @@ class _QuizzlerState extends State<Quizzler> {
                         bool correctAnswer =
                             quiz.getAnswer();
                         if (correctAnswer == false) {
-                          quiz.scoreKeeper.add(Icon(
+                          quiz.scoreKeeper.add(const Icon(
                             Icons.check,
                             color: Colors.green,
                           ));
                         } else {
-                          quiz.scoreKeeper.add(Icon(
+                          quiz.scoreKeeper.add(const Icon(
                             Icons.check,
                             color: Colors.red,
                           ));
@@ -119,8 +119,4 @@ class _QuizzlerState extends State<Quizzler> {
   }
 }
 
-/*
-question1: , false,
-question2: 'Approximately one quarter of human bones are in the feet.', true,
-question3: 'A slug\'s blood is green.', true,
-*/
+
